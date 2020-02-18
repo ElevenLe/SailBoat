@@ -1,0 +1,96 @@
+@import url(https://fonts.googleapis.com/css?family=Gloria+Hallelujah);
+
+html, body {
+  font-family: 'Gloria Hallelujah', cursive;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#msg {
+  position: absolute;  
+  left: 40px;
+  top: 0;
+  font-size: 1.5em;
+}
+
+#plan {
+  margin: 25px 35%;
+  width: 400px;
+}
+
+.room {
+  position: relative;
+  border: black 5px solid; 
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+
+.roomName {
+  margin-left: auto;
+	margin-right: auto;
+  font-weight: bold; 
+  font-size: 1.2em;
+  color: #1658f4;
+}
+
+
+
+
+
+/******************************************/
+/*  ROOMS                                 */
+/******************************************/
+#room1:nth-child(2) {
+  left: 0;
+  top: 0;
+  width: 180px;
+  height: 77px;
+}
+
+
+div[class^="room"]:nth-child(3) {
+  left: 180px;
+  top: -87px;
+  width: 200px;
+  height: 150px;
+  line-height: 100px;
+  background: #5390ca;
+}
+
+
+
+div[class^="room"]:nth-child(4) {
+  left: 1px;
+  top: -165px;
+  width: 175px; 
+  height: 140px; 
+  line-height: 100px;
+  background: #26bb82;  
+}
+
+div[class^="room"]:nth-child(5) {
+  left: 1px;
+  top: -169px;
+  width: 177px; 
+  height: 140px; 
+  line-height: 100px;  
+  background: #991d84;
+}
+
+
+
+div[class^="room"]:nth-child(6) {
+  left: 186px;
+  top: -390px;
+  width: 197px; 
+  height: 213px; 
+  line-height: 190px;  
+  background: #ff9900;  
+}
+
+
+  

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>Floor Plan</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+  </head>
+
+  <body>
+      <div id="msg">Floor Plan! </div>
+
+
+      <div id="plan">
+        
+        
+        <div class="room" id = "lobby"> 
+          <p class="roomName">Lobby</p>
+        </div>
+        <div class="room" id = "room1"> 
+          <p class="roomName">Room1</p>
+        </div>
+        <div class="room" id = "room2"> 
+          <p class="roomName">Room2</p>
+        </div>
+        <div class="room" id = "room3"> 
+          <p class="roomName">Room3</p>
+        </div>
+        <div class="room" id = "room4"> 
+          <p class="roomName">Room4</p>
+        </div>
+        <div class="room" id = "room5"> 
+          <p class="roomName">Room5</p>
+        </div>
+      </div>
+          
+  </body>
+  <script type="text/javascript">
+
+    var element = document.getElementById("room1");
+    element.style="background-color:{{ value }}"
+    var element = document.getElementById("room2");
+    element.style="background-color:powderblue;"
+    
+  </script>
+</html>
