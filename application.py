@@ -10,7 +10,7 @@ def create_row_in_gs():
         return "error"
     if request.method == 'POST':
         reqId = request.json['id']
-        f= open("data.txt","w+")
+        f= open("data.txt","w")
         f.write(reqId)
 	
         return reqId

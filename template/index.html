@@ -6,40 +6,49 @@
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
   </head>
 
-  <body>
+  <body onload = "JavaScript:AutoRefresh(10000);">
       <div id="msg">Floor Plan! </div>
 
 
       <div id="plan">
         
         
-        <div class="room" id = "lobby"> 
-          <p class="roomName">Lobby</p>
+        <div class="room" id = "area1"> 
+          <p class="roomName">Room602-619</p>
         </div>
-        <div class="room" id = "room1"> 
-          <p class="roomName">Room1</p>
+        <div class="room" id = "area2"> 
+            <p class="roomName">Room636</p>
         </div>
-        <div class="room" id = "room2"> 
-          <p class="roomName">Room2</p>
+        <div class="room" id = "area3"> 
+            <p class="roomName">Atrium&stairs</p>
+          </div>
+        <div class="room" id = "area4"> 
+          <p class="roomName">Room627</p>
         </div>
-        <div class="room" id = "room3"> 
-          <p class="roomName">Room3</p>
+        <div class="room" id = "area5"> 
+          <p class="roomName">North reading room</p>
         </div>
-        <div class="room" id = "room4"> 
-          <p class="roomName">Room4</p>
-        </div>
-        <div class="room" id = "room5"> 
-          <p class="roomName">Room5</p>
+        <div class = "data">
+            <div >  Room602-619: {{ data[0] }} </div>
+            <div >  Room636: {{ data[1] }} </div>
+            <div >  Room627: {{ data[2] }} </div>
+            <div >  North reading room:{{ data[3] }} </div>
         </div>
       </div>
-          
+
   </body>
   <script type="text/javascript">
-
-    var element = document.getElementById("room1");
-    element.style="background-color:{{ value }}"
-    var element = document.getElementById("room2");
-    element.style="background-color:powderblue;"
+    function AutoRefresh( t ) {
+      setTimeout("location.reload(true);", t);
+    }
+    var element = document.getElementById("area1");
+    element.style="background-color:{{ value[0] }}"
+    var element = document.getElementById("area2");
+    element.style="background-color:{{ value[1] }};"
+    var element = document.getElementById("area4");
+    element.style="background-color:{{ value[2] }};"
+    var element = document.getElementById("area5");
+    element.style="background-color:{{ value[3] }};"
     
   </script>
 </html>
