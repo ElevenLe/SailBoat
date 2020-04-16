@@ -1,92 +1,192 @@
+@import url(https://fonts.googleapis.com/css?family=Gloria+Hallelujah);
 
 html, body {
+  font-family: 'Gloria Hallelujah', cursive;
+  background: #f7f7f7;
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
 }
+
 #msg {
-  position: relative;  
   font-size: 1.5em;
-  text-align: center;
 }
 
 #plan {
-  margin-left: 35%;
-  margin-top:25px;
+  margin: 25px 35%;
   width: 400px;
 }
 
-
- .room {
+.room {
   position: relative;
   border: black 5px solid; 
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  
+}
+
+.room:before {         
+  content: "";
+  position: absolute;
 } 
 
+.room:after {       
+  content: "";
+  position: absolute;
+}
+
+
+
 .roomName {
-    margin-left: auto;
-    margin-right: auto;
-    font-weight: bold; 
-    font-size: 1.2em;
-    color:black;
-    text-align: center;
-  }
-
-
+  margin-left: auto;
+	margin-right: auto;
+  font-weight: bold; 
+  font-size: 1em;
+  color: black;
+}
 
 
 /******************************************/
 /*  ROOMS                                 */
 /******************************************/
-#area1{
-  width: 400px;
+#area1 {
+  left: 0;
+  top: 0;
+  width: 180px;
   height: 180px;
-  text-align: center;
+/*   border-left-color: transparent;   */
+/*   border-right-color: transparent;  */
 }
 
 
-#area2 {
-  top:-4px;
-  width: 120px;
-  height: 150px;
-  line-height: 100px;
-  text-align: center;
+/* Front door (first half)*/
+#area1:after {
+  top: 120px;
+  left: 150px;
+  height: 30px;
+  width: 30px;
+  border-width: 5px;
+  border-style: double solid none none;
+  border-color: black #f7f7f7  #f7f7f7 #f7f7f7;
+/*   border-radius: 0 0  27px  0;  */
 }
 
-#area3 {
-    top:-164px;
-    left:125px;
-    width: 160px;
-    height: 150px;
-    line-height: 100px;
-    border-left-color:transparent;
-    text-align: center;
-  }
+#area2{
+  left: 190px;
+  top: -190px;
+  width: 400px;
+  height: 181px;
+  border-left-color: transparent; 
+  line-height: 100px;  /* FIXME: center text */
+  border-bottom-color: transparent;  
+}
 
 
-  #area4 {
-    top:-325px;
-    left:280px;
-    width: 120px;
-    height: 150px;
-    line-height: 100px;
-    text-align: center;
-  }
 
-  #area5 {
-    top:-330px;
-    left:0px;
-    width: 400px;
-    height: 150px;
-    line-height: 100px;
-    text-align: center;
-  }
+#area3{
+  left: 425px;
+  top: -377px;
+  width: 160px;
+  height: 60px;
+  line-height: 100px;  /* FIXME: center text */
+  border-style: dotted;
+  border-top-color: transparent; 
+  border-right-color: transparent; 
+} 
+
+#area4{
+  left: 0px;
+  top: -265px;
+  width: 180px;
+  height: 60px;
+/*   border-left-color: transparent;   */
+/*   border-right-color: transparent;  */
+}
 
 
-  .data {
-    top:-300px;
-    position:relative;
-    text-align: center;
-    }
+/* Front door (first half)*/
+#area4:after {
+  top: -35px;
+  left: 50px;
+  height: 30px;
+  width: 30px;
+  border-width: 5px;
+  border-style: none none solid double;
+  border-color: #f7f7f7 #f7f7f7 #f7f7f7 black;
+/*   border-radius: 0 0  27px  0;  */
+}
+
+
+#area5{
+  left: 185px;
+  top: -335px;
+  width: 180px;
+  height: 60px;
+/*   border-left-color: transparent;   */
+/*   border-right-color: transparent;  */
+}
+
+
+/* Front door (first half)*/
+#area5:after {
+  top: 5px;
+  left: -5px;
+  height: 20px;
+  width: 20px;
+  border-width: 5px;
+  border-style: none none double solid;
+  border-color: #f7f7f7 #f7f7f7 black #f7f7f7;
+/*   border-radius: 0 0  27px  0;  */
+}
+ 
+
+#area6{
+  left: 370px;
+  top: -405px;
+  width: 115px;
+  height: 60px;
+/*   border-left-color: transparent;   */
+/*   border-right-color: transparent;  */
+}
+
+
+/* Front door (first half)*/
+
+
+#area7{
+  left: 493px;
+  top: -480px;
+  width: 97px;
+  height: 63px;
+  border-left-color: transparent;  
+ border-top-color: transparent;  
+}
+
+#area7:before {
+  top: 10px;
+  left: -8px;
+  height: 20px;
+  width: 20px;
+  border-width: 5px;
+  border-style: none none double solid;
+  border-color: #f7f7f7 #f7f7f7 black #f7f7f7;
+/*   border-radius: 0 0  27px  0;  */
+}
+
+/* Front door (first half)*/
+#area7:after {
+  top: 43px;
+  left: 50px;
+  height: 20px;
+  width: 20px;
+  border-width: 5px;
+  border-style: none none solid double;
+  border-color: #f7f7f7 #f7f7f7 #f7f7f7 black;
+}
 
 

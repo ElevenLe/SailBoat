@@ -15,20 +15,19 @@ def create_row_in_gs():
         return reqId
 @application.route('/')
 def hello_world():
-    populations = numpy.random.uniform(0,1,6)
-    populations = [round(item,2) for item in populations]
+    populations = numpy.random.uniform(0,10,6)
     colors = ["green"]*6
     for i in range(len(populations)):
-        if 0<=populations[i]<=0.5:
+        if 0<=populations[i]<=5:
             colors[i] = "green"
-        elif 0.5<populations[i]<=0.8:
+        elif 0.5<populations[i]<=8:
             colors[i] = "yellow"
         else:
             colors[i] = "red"
     f= open("data.txt","r")
     if f.mode == 'r':
         content =f.read().split(',')
-    content = [int(item) for item in content]
+        content = [int(item) for item in content]
     print(colors)
     return render_template("index.html",value = colors, data=populations)
 

@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <title>Floor Plan</title>
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "style.css">
   </head>
 
   <body onload = "JavaScript:AutoRefresh(10000);">
@@ -43,22 +43,20 @@
     </div>
   </body>
   <script type="text/javascript">
-    function AutoRefresh( t ) {
-      setTimeout("location.reload(true);", t);
-    }
     var element = document.getElementById("area1");
-    element.style="background-color:{{ value[0] }}"
+    element.style="background-color:green"
     var element = document.getElementById("area2");
-    element.style="background-color:{{ value[1] }};"
+    element.style="background-color:green;"
     var element = document.getElementById("area3");
-    element.style="background-color:{{ value[2] }};"
+    element.style="background-color:green;"
     var element = document.getElementById("area4");
-    element.style="background-color:{{ value[3] }};"
+    element.style="background-color:green;"
     var element = document.getElementById("area5");
-    element.style="background-color:{{ value[4] }};"
+    element.style="background-color:green;"
     var element = document.getElementById("area6");
-    element.style="background-color:{{ value[5] }};"
+    element.style="background-color:green;"
     var element = document.getElementById("area7");
-    element.style="background-color:{{ value[1] }};"
+    element.style="background-color:green;"
+    
   </script>
 </html>
