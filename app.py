@@ -15,7 +15,7 @@ def create_row_in_gs():
         return reqId
 @application.route('/')
 def hello_world():
-    populations = numpy.random.uniform(0,10,6)
+    populations = numpy.random.randint(low=1, high=10, size=6)
     colors = ["green"]*6
     for i in range(len(populations)):
         if 0<=populations[i]<=5:
