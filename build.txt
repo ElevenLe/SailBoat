@@ -16,18 +16,23 @@ Click==7.0
 cryptography==2.8
 Flask==1.1.1
 idna==2.9
+itsdangerous==1.1.0
 Jinja2==2.10.3
 MarkupSafe==1.1.1
 numpy==1.18.1
 pycparser==2.20
-pycryptodome==3.9.7
-PyMySQL==0.9.3
 requests==2.23.0
 six==1.14.0
 urllib3==1.25.8
 virtualenv==16.7.8
-virtualenvwrapper-win==1.2.5
 Werkzeug==0.16.0
 
-3. Make sure the http server is running, then navigate a terminal window to the directory containing app.py and run "python app.py"
+3. Download the entire repository from https://github.com/ElevenLe/SailBoat
+	recommended to change the key in application.py and server.py from the default, can get a random key by using this command in python
+	Fernet.generate_key()
+	
+4. Make sure the http server is running, then navigate a terminal window to the directory containing app.py and run "python app.py"
 (note, can change port number from app.py)
+
+NOTE: designed for a maximum of 6 rooms, if using more than that change numRooms in app.py, and also add in data.txt a new line containing only a number (ex: 0)
+If you don't do this, the program will ignore any attempts to send data to the new room.

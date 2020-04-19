@@ -13,6 +13,8 @@ def create_row_in_gs():
     if request.method == 'GET':
         return "error"
     if request.method == 'POST':
+        #RECOMMENDED generate a new key with key, use Fernet.generate_key() to get a random key
+        #Note, key must match key in postscript.py
         key=("R4WBmuFIHoTaz9recdTsrMYETGhAYXuLXoOm-kVr2JE=".encode())
         cipher_suite = Fernet(key)
         print(request.json['data'])
