@@ -1,0 +1,47 @@
+
+
+1. Make sure the service is running an http server and supports python and flask
+   a) If applicable, install python 3.7 on the cloud server.
+
+2. Install these requirements on the cloud server with pip install packagenamehere
+
+note, the number after the == is what version should be installed, though if you have no errors with "pip install packagenamehere"
+then don't worry about these version numbers
+
+certifi==2019.11.28
+cffi==1.14.0
+chardet==3.0.4
+Click==7.0
+cryptography==2.8
+Flask==1.1.1
+idna==2.9
+itsdangerous==1.1.0
+Jinja2==2.10.3
+MarkupSafe==1.1.1
+numpy==1.18.1
+pycparser==2.20
+requests==2.23.0
+six==1.14.0
+urllib3==1.25.8
+virtualenv==16.7.8
+Werkzeug==0.16.0
+
+some services may instead only have an option for setting requirements, or setting these through a requirements.txt, so read the documentation of your service.
+
+3. Download the entire repository from https://github.com/ElevenLe/SailBoat
+	recommended to change the key in application.py and server.py from the default, can get a random key by using this command in python
+	Fernet.generate_key()
+	(can change port number from app.py)
+
+4. Transfer these files to the cloud server
+
+5. Make sure the service is running its http server, then run "python app.py" from within the application directory on the cloud server
+
+Some services will require running the server in different ways, check the documentation for your service.
+
+
+Designed for a maximum of 6 rooms, if using more than that change numRooms in app.py, and also add in data.txt a new line containing only a number (ex: 0)
+If you don't do this, the program will ignore any attempts to send data to the new room.
+
+
+
