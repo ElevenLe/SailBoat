@@ -1,0 +1,33 @@
+Server setup:
+1. Install some sort of http server
+easy option for windows: https://sourceforge.net/projects/wampserver/  
+for others: https://httpd.apache.org/download.cgi 
+
+2. Download python 3.7
+  a) Use python's "pip install" to install these dependencies (ex: "pip install packagename")
+
+note, the number after the == is what version should be installed, though if you have no errors with "pip install packagename"
+then don't worry about these version numbers
+  
+certifi==2019.11.28
+cffi==1.14.0
+chardet==3.0.4
+Click==7.0
+cryptography==2.8
+Flask==1.1.1
+idna==2.9
+Jinja2==2.10.3
+MarkupSafe==1.1.1
+numpy==1.18.1
+pycparser==2.20
+pycryptodome==3.9.7
+PyMySQL==0.9.3
+requests==2.23.0
+six==1.14.0
+urllib3==1.25.8
+virtualenv==16.7.8
+virtualenvwrapper-win==1.2.5
+Werkzeug==0.16.0
+
+3. Make sure the http server is running, then navigate a terminal window to the directory containing app.py and run "python app.py"
+(note, can change port number from app.py)
