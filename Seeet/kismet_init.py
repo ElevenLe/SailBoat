@@ -24,7 +24,8 @@ def analysis(db, AP):
     while True:
         macs_set_list = []
         # set check time
-        check_a = datetime.timestamp(datetime.now()) - 4
+        check_a = datetime.timestamp(datetime.now()) - 1
+        time.sleep(30)
         check_b = datetime.timestamp(datetime.now()) - 1
         # detecting how many devices alive now
         devices_number = detectingLiveDevices(db, AP, check_a, check_b, macs_set_list)
@@ -35,7 +36,6 @@ def analysis(db, AP):
         # send the data to the server
         pS.postData(population)
         print("data send")
-        time.sleep(5)
 
 
 
@@ -48,9 +48,8 @@ def detectingLiveDevices(db, AP, a,b,macs_set_list):
     APmacs = getMacBySSID(APlist, "-100", db)
     # get all unique devices with their macs in this minutes
     devices_mac_set_in_minute = getNumberOfConnectedWithTargetAP(db, APmacs,a,b)
-    print(devices_mac_set_in_minute)
     # merge new macs set into total macs set
-    number = compressMacsSet(devices_mac_set_in_minute, macs_set_list,0)
+    number = compressMacsSet(devices_mac_set_in_minute, macs_set_list,4)
     return number
 
 # union all showed macs within last certain amoung of time
@@ -81,7 +80,6 @@ def compress(new_set, mac_set_list):
 
 # given a AP name, such as "NYU", find it's macs addresses
 def getMacBySSID(target_name_list, signal_strenght, db):
-    print("running get ssid")
     target_ap_mac = []
     ssid = "kismet.device.base.name"
     macaddr = "kismet.device.base.macaddr"
@@ -113,6 +111,7 @@ def getNumberOfConnectedWithTargetAP(db, macs, time_a, time_b):
     return macs_list
 
 
+# poor algorithm for calculate the population, just use divided by 2, which assume each person has two devices 
 def calculate(devices_number):
     return devices_number/2
 
@@ -125,8 +124,5 @@ def main():
     db = conn.cursor()
     print("success connect to database with " + sys.argv[1])
     analysis(db, sys.argv[2])
-    
-
-
 
 main()
