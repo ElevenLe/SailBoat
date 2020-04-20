@@ -34,7 +34,7 @@ def analysis(db, AP):
         population = calculate(devices_number)
         print("population : " + str(population))
         # send the data to the server
-        pS.postData(population)
+        pS.postData(population,0)
         print("data send")
 
 
@@ -46,15 +46,17 @@ def detectingLiveDevices(db, AP, a,b,macs_set_list):
     APlist.append(AP)
     # general macs for target APs
     APmacs = getMacBySSID(APlist, "-100", db)
+    # inital a dic for remeber the device mac and type
+    devces_type = {}
     # get all unique devices with their macs in this minutes
-    devices_mac_set_in_minute = getNumberOfConnectedWithTargetAP(db, APmacs,a,b)
+    devices_mac_set_in_minute = getNumberOfConnectedWithTargetAP(db, APmacs,devces_type,a,b)
     # merge new macs set into total macs set
     number = compressMacsSet(devices_mac_set_in_minute, macs_set_list,4)
     return number
 
 # union all showed macs within last certain amoung of time
 def compressMacsSet(mac_set, mac_set_list, minutes_compress):
-    if(minutes_compress != 0){
+    if(minutes_compress != 0):
         if(len(mac_set_list) == 0):
             mac_set_list.append(mac_set)
             return len(mac_set)
@@ -68,7 +70,6 @@ def compressMacsSet(mac_set, mac_set_list, minutes_compress):
             mac_set_list.pop(0)
             mac_set_list.append(mac_set)
             return number-2
-    }
     else:
         return len(mac_set)
 
@@ -98,17 +99,32 @@ def getMacBySSID(target_name_list, signal_strenght, db):
     return target_ap_mac
 
 # find all the distinct mac addresses in packages that send to target macs address in the require time
-def getNumberOfConnectedWithTargetAP(db, macs, time_a, time_b):
+def getNumberOfConnectedWithTargetAP(db, macs, devces_type_dict ,time_a, time_b):
     query = 'SELECT DISTINCT sourcemac FROM packets WHERE destmac = ? AND ts_sec > ? AND ts_sec < ?'
     macs_list = set()
     for macaddr in macs:
         t = (macaddr, time_a, time_b,)
-        number = db.execute(query, t)
+        db.execute(query, t)
         rows = db.fetchall()
         for row in range(len(rows)):
             mac = rows[row][0]
-            macs_list.add(mac)
+            if mac in devces_type_dict:
+                macs_list.add(mac)
+            elif checkMacsType(mac,db):
+                macs_list.add(mac)
+                devces_type_dict[mac] = 'Wi-Fi Client'
+
     return macs_list
+
+def checkMacsType(mac,db):
+    query = 'SELECT type FROM devices WHERE devmac = ?'
+    t = (mac,)
+    db.execute(query,t)
+    dev_type = db.fetchone()
+    if(dev_type[0] == "Wi-Fi Client"):
+        return True
+    else:
+        return False
 
 
 # poor algorithm for calculate the population, just use divided by 2, which assume each person has two devices 

@@ -26,6 +26,12 @@
     $ kismet
     ```
     In a new Web browser page, enter http://localhost:2501/. Enable the wifi monitor in this web.
+
+    To enable wifi monitor for kismet, you can select the left right corner menu, and select Data Sources.
+
+    In Data Sources, you are able to see the wifi card that support monitor mode, enable it.
+
+    **note**: if you only have one wifi card, open monitor mode will let you offline.
 # Running
 ## server
 1. Open the server in the Seeet folder

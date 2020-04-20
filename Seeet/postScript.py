@@ -17,5 +17,3 @@ def postData(data, index):
     r = requests.post(url=api_url, json=create_row_data)
     print(r.status_code, r.reason, r.text)
 #usage: postData(data,index (must be in range 0-5))
-
-postData(9,0)
