@@ -47,8 +47,13 @@ def create_row_in_gs():
 def hello_world():
     f = open("data.txt","r")
     populations = [0]*numRooms
+    populations[0] = int(f.readline())
     for x in range(numRooms):
-        populations[x] = int(f.readline())
+        populations[x] = populations[0]
+        #change this line to populations[x] = int(f.readline())
+        #and comment out the line above this for loop
+        #if you want more than 1 room number displayed
+	
     colors = ["green"]*6
     for i in range(len(populations)):
         if 0<=populations[i]<=5:
