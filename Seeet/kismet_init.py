@@ -3,7 +3,7 @@ import sqlite3
 import json
 # postScript is used for sending data to the server
 import postScript as pS 
-import postLocalScript as pLS
+import localpostScript.py as pLS
 # OS to run command
 import sys
 from datetime import datetime
