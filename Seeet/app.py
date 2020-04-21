@@ -18,7 +18,6 @@ def create_row_in_gs():
         key=("R4WBmuFIHoTaz9recdTsrMYETGhAYXuLXoOm-kVr2JE=".encode())
         cipher_suite = Fernet(key)
         print(request.json['data'])
-        
         data = request.json['data']
         index = request.json['index']
         timeInt=int(time.time())
