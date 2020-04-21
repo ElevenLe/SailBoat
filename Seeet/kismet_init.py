@@ -3,11 +3,12 @@ import sqlite3
 import json
 # postScript is used for sending data to the server
 import postScript as pS 
-import localpostScript.py as pLS
+import localpostScript as pLS
 # OS to run command
 import sys
 from datetime import datetime
 import time
+import math
 
 # lock = createLock()
 # handle = True
@@ -25,15 +26,19 @@ def analysis(db, AP, host):
     while True:
         macs_set_list = []
         # set check time
-        check_a = datetime.timestamp(datetime.now()) - 5
-        time.sleep(10)
-        check_b = datetime.timestamp(datetime.now()) - 4
+        check_a = datetime.timestamp(datetime.now()) - 1
+        time.sleep(30)
+        check_b = datetime.timestamp(datetime.now()) - 1
         # detecting how many devices alive now
         devices_number = detectingLiveDevices(db, AP, check_a, check_b, macs_set_list)
         print("devices_number : " + str(devices_number))
         # calculate the population
         population = calculate(devices_number)
-        print("population : " + str(population))
+        population = math.ceil(population)
+        print("population : " + str(population)
+        if population < 2:
+            population -= 1
+
         # send the data to the server
         if(host == "online"):
             pS.postData(int(population),0)
