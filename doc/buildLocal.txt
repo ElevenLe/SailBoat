@@ -1,7 +1,7 @@
 Server setup:
 1. Install some sort of http server
-easy option for windows: https://sourceforge.net/projects/wampserver/  
-for others: https://httpd.apache.org/download.cgi 
+an easy option for windows is to install wamp: https://sourceforge.net/projects/wampserver/  
+for others, such as linux/mac install apache: https://httpd.apache.org/download.cgi 
 
 2. Download python 3.7
   a) Use python's "pip install" to install these dependencies (ex: "pip install packagenamehere")
@@ -28,10 +28,11 @@ virtualenv==16.7.8
 Werkzeug==0.16.0
 
 3. Download the entire repository from https://github.com/ElevenLe/SailBoat
-	recommended to change the key in application.py and server.py from the default, can get a random key by using this command in python
+	recommended to change the key in application.py and server.py from the current value, can get a random key by using this command in python
 	Fernet.generate_key()
 	
-4. Make sure the http server is running, then navigate a terminal window to the directory containing app.py and run "python app.py"
+4. Make sure the http server is running (either wamp or apache should be running), then navigate a terminal window to the directory containing app.py and run "python app.py"
+At this point, you should see some text telling you the server is running.
 (note, can change port number from app.py)
 
 NOTE: designed for a maximum of 6 rooms, if using more than that change numRooms in app.py, and also add in data.txt a new line containing only a number (ex: 0)
