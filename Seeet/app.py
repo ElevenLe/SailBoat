@@ -23,7 +23,7 @@ def create_row_in_gs():
         timeInt=int(time.time())
         decodedTime = cipher_suite.decrypt(request.json['time'].encode())
         decodedTime = decodedTime.decode("utf-8")
-        if(abs(int(decodedTime)-timeInt) < 30):
+        if(abs(int(decodedTime)-timeInt) < 120):
             #if the message was received in the last 30 seconds, then
             #write the data
             fileData=""
@@ -55,9 +55,9 @@ def hello_world():
 	
     colors = ["green"]*6
     for i in range(len(populations)):
-        if 0<=populations[i]<=5:
+        if 0<=populations[i]<=1:
             colors[i] = "green"
-        elif 0.5<populations[i]<=8:
+        elif 1<populations[i]<=5:
             colors[i] = "yellow"
         else:
             colors[i] = "red"
