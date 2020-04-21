@@ -35,10 +35,9 @@ def analysis(db, AP, host):
         # calculate the population
         population = calculate(devices_number)
         population = math.ceil(population)
-        print("population : " + str(population)
-        if population < 2:
+        print("population : " + str(population))
+        if(population > 2):
             population -= 1
-
         # send the data to the server
         if(host == "online"):
             pS.postData(int(population),0)
