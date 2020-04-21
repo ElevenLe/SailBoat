@@ -32,7 +32,8 @@ Werkzeug==0.16.0
 	Fernet.generate_key()
 	
 4. Make sure the http server is running (either wamp or apache should be running), then navigate a terminal window to the directory containing app.py and run "python app.py"
-At this point, you should see some text telling you the server is running.
+At this point, you should see some text telling you the server is running. 
+To test if the server is working correctly, type "localhost" in a web browser's address field.
 (note, can change port number from app.py)
 
 NOTE: designed for a maximum of 6 rooms, if using more than that change numRooms in app.py, and also add in data.txt a new line containing only a number (ex: 0)
