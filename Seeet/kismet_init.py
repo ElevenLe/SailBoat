@@ -24,9 +24,9 @@ def analysis(db, AP):
     while True:
         macs_set_list = []
         # set check time
-        check_a = datetime.timestamp(datetime.now()) - 1
-        time.sleep(30)
-        check_b = datetime.timestamp(datetime.now()) - 1
+        check_a = datetime.timestamp(datetime.now()) - 10
+        time.sleep(5)
+        check_b = datetime.timestamp(datetime.now()) - 5
         # detecting how many devices alive now
         devices_number = detectingLiveDevices(db, AP, check_a, check_b, macs_set_list)
         print("devices_number : " + str(devices_number))
@@ -108,11 +108,12 @@ def getNumberOfConnectedWithTargetAP(db, macs, devces_type_dict ,time_a, time_b)
         rows = db.fetchall()
         for row in range(len(rows)):
             mac = rows[row][0]
-            if mac in devces_type_dict:
-                macs_list.add(mac)
-            elif checkMacsType(mac,db):
-                macs_list.add(mac)
-                devces_type_dict[mac] = 'Wi-Fi Client'
+            macs_list.add(mac)
+            # if mac in devces_type_dict:
+            #     macs_list.add(mac)
+            # elif checkMacsType(mac,db):
+            #     macs_list.add(mac)
+            #     devces_type_dict[mac] = 'Wi-Fi Client'
 
     return macs_list
 
