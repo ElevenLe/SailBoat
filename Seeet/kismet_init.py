@@ -3,6 +3,7 @@ import sqlite3
 import json
 # postScript is used for sending data to the server
 import postScript as pS 
+import postLocalScript as pLS
 # OS to run command
 import sys
 from datetime import datetime
@@ -20,7 +21,7 @@ def closeDatabase(db):
 
 # this is a main analysis program
 # this function will run infinity until external exit
-def analysis(db, AP):
+def analysis(db, AP, host):
     while True:
         macs_set_list = []
         # set check time
@@ -34,8 +35,12 @@ def analysis(db, AP):
         population = calculate(devices_number)
         print("population : " + str(population))
         # send the data to the server
-        pS.postData(int(population),0)
-        print("data send")
+        if(host == "online"):
+            pS.postData(int(population),0)
+            print("data send")
+        elif(host == "local"):
+            pLS.postData(int(population),0)
+            print("data send")
 
 
 
@@ -143,6 +148,6 @@ def main():
     conn.row_factory = sqlite3.Row
     db = conn.cursor()
     print("success connect to database with " + sys.argv[1])
-    analysis(db, sys.argv[2])
+    analysis(db, sys.argv[2], sys.argv[3])
 
 main()
