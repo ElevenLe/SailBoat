@@ -39,6 +39,8 @@
     ```
     python app.py
     ```
+    In case you cannot open the app, the server is running in port 80
+    so you want to use sudo python app.py
 3. Open other command, enter the folder Seeet, run the kismet_init.py
     ```
     $ python kismet_init.py "Kismet_data.kismet" "Your wifi name"
@@ -46,4 +48,4 @@
     **note**: "Kismet_data.kismet" is in this folder while running kismet, the name should be like something "Kismet-20200419-02-00-10-1.kismet". Replace the name within your folder
 
 ## client
-1. Open the web browser, and open localhost:"your server port" 
+1. Open the web browser, and open http://127.0.0.1:80/
