@@ -24,9 +24,9 @@ def analysis(db, AP):
     while True:
         macs_set_list = []
         # set check time
-        check_a = datetime.timestamp(datetime.now()) - 10
-        time.sleep(5)
-        check_b = datetime.timestamp(datetime.now()) - 5
+        check_a = datetime.timestamp(datetime.now()) - 5
+        time.sleep(10)
+        check_b = datetime.timestamp(datetime.now()) - 4
         # detecting how many devices alive now
         devices_number = detectingLiveDevices(db, AP, check_a, check_b, macs_set_list)
         print("devices_number : " + str(devices_number))
@@ -34,7 +34,7 @@ def analysis(db, AP):
         population = calculate(devices_number)
         print("population : " + str(population))
         # send the data to the server
-        pS.postData(population,0)
+        pS.postData(int(population),0)
         print("data send")
 
 
@@ -130,7 +130,10 @@ def checkMacsType(mac,db):
 
 # poor algorithm for calculate the population, just use divided by 2, which assume each person has two devices 
 def calculate(devices_number):
-    return devices_number/2
+    if(devices_number == 0):
+        return 0
+    else:
+        return devices_number/2
 
 
 def main():
