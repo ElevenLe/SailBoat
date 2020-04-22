@@ -1,7 +1,10 @@
 # Seeet
 Seeet is web application developed using Kismet, python and Flask. Seeet shows population in the one area
+## Website
+please visit
+http://howfull.us-west-2.elasticbeanstalk.com/
 ## Building
-[build.md](/build.md)
+[build.md](/build.md) 
 ## Seeet finds area population
 Using kismet, we are able to see the wifi packages flow between clinets and 
 Access Points(APs). Ususally, in the home or library, one AP is responsed all 
