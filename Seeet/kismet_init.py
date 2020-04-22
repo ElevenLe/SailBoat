@@ -1,8 +1,9 @@
 # For reading the kismet file
 import sqlite3
 import json
-# postScript is used for sending data to the server
+# postScript is used for sending data to the cloud server
 import postScript as pS 
+# localpostScript is used for sending data locally
 import localpostScript as pLS
 # OS to run command
 import sys
@@ -23,6 +24,8 @@ def closeDatabase(db):
 # this is a main analysis program
 # this function will run infinity until external exit
 def analysis(db, AP, host):
+    # inital a dic for remeber the device mac and type
+    devces_type = {}
     while True:
         macs_set_list = []
         # set check time
@@ -30,14 +33,14 @@ def analysis(db, AP, host):
         time.sleep(30)
         check_b = datetime.timestamp(datetime.now()) - 1
         # detecting how many devices alive now
-        devices_number = detectingLiveDevices(db, AP, check_a, check_b, macs_set_list)
+        devices_number = detectingLiveDevices(db, AP, check_a, check_b, macs_set_list,devces_type)
         print("devices_number : " + str(devices_number))
         # calculate the population
         population = calculate(devices_number)
         population = math.ceil(population)
         print("population : " + str(population))
         if(population > 2):
-            population -= 1
+            population = population - 1
         # send the data to the server
         if(host == "online"):
             pS.postData(int(population),0)
@@ -49,14 +52,12 @@ def analysis(db, AP, host):
 
 
 # this function will count how many devices between check time
-def detectingLiveDevices(db, AP, a,b,macs_set_list):
+def detectingLiveDevices(db, AP, a,b,macs_set_list,devces_type):
     # put AP into list 
     APlist = []
     APlist.append(AP)
     # general macs for target APs
     APmacs = getMacBySSID(APlist, "-100", db)
-    # inital a dic for remeber the device mac and type
-    devces_type = {}
     # get all unique devices with their macs in this minutes
     devices_mac_set_in_minute = getNumberOfConnectedWithTargetAP(db, APmacs,devces_type,a,b)
     # merge new macs set into total macs set
@@ -78,7 +79,7 @@ def compressMacsSet(mac_set, mac_set_list, minutes_compress):
             number = compress(mac_set,minutes_compress)
             mac_set_list.pop(0)
             mac_set_list.append(mac_set)
-            return number-2
+            return number
     else:
         return len(mac_set)
 
@@ -109,6 +110,7 @@ def getMacBySSID(target_name_list, signal_strenght, db):
 
 # find all the distinct mac addresses in packages that send to target macs address in the require time
 def getNumberOfConnectedWithTargetAP(db, macs, devces_type_dict ,time_a, time_b):
+    print(devces_type_dict)
     query = 'SELECT DISTINCT sourcemac FROM packets WHERE destmac = ? AND ts_sec > ? AND ts_sec < ?'
     macs_list = set()
     for macaddr in macs:
@@ -117,12 +119,11 @@ def getNumberOfConnectedWithTargetAP(db, macs, devces_type_dict ,time_a, time_b)
         rows = db.fetchall()
         for row in range(len(rows)):
             mac = rows[row][0]
-            macs_list.add(mac)
-            # if mac in devces_type_dict:
-            #     macs_list.add(mac)
-            # elif checkMacsType(mac,db):
-            #     macs_list.add(mac)
-            #     devces_type_dict[mac] = 'Wi-Fi Client'
+            if mac in devces_type_dict:
+                macs_list.add(mac)
+            elif checkMacsType(mac,db):
+                macs_list.add(mac)
+                devces_type_dict[mac] = 'Wi-Fi Client'
 
     return macs_list
 
@@ -131,10 +132,11 @@ def checkMacsType(mac,db):
     t = (mac,)
     db.execute(query,t)
     dev_type = db.fetchone()
-    if(dev_type[0] == "Wi-Fi Client"):
-        return True
-    else:
-        return False
+    if dev_type is not None:
+        if(dev_type[0] == "Wi-Fi Client"):
+            return True
+
+    return False
 
 
 # poor algorithm for calculate the population, just use divided by 2, which assume each person has two devices 
