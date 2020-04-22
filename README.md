@@ -47,6 +47,6 @@ In conclution, Seeet to home is not high accuracy, where not applies to library.
 
 ## Contributors
 * Zhengyi Li (zl1499@nyu.edu)
-* Christopher Verch
-* Rachel
+* Christopher Verch （cv932@nyu.edu）
+* Rachel （qw724@nyu.edu）
 * James
